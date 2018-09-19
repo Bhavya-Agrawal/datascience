@@ -1,8 +1,8 @@
 # datascience
 attempts related to data reading,writing,cleaning,parsing,visualisation using machine learning libraries
 
-#Requirements
-###Python3
+# Requirements
+### Python3
 ```sh 
 $ cd Desktop
 $ sudo apt-get install python3
@@ -12,8 +12,8 @@ $pip3 install pandas
 $pip3 install xlwt
 ```
 
-#USE CASE
-###passing data from a html page to database and writing the obtained data to an excel file  using python-flask
+# USE CASE
+### passing data from a html page to database and writing the obtained data to an excel file  using python-flask
 ```sh
 $ pip3 install flask
 $ cd datascience
@@ -26,8 +26,8 @@ $ vim __init__.py
 $ chmod +x __init__.py
 ```
 
-#SERVICES	
-###Start mariadb service
+# SERVICES	
+### Start mariadb service
 ```sh
 $ systemctl enable --now mariadb.service
 ```
