@@ -31,32 +31,21 @@ def form_data():
 def insert_data():
     out = pd.read_excel('pandas.xlsx')
 
-    #initialise empty lists
-    dflist=[]
-    dflist.append(out)
-    fname=[]
-    sname = []
-    ages = []
 
     # get data from form
     f_name=request.form['n']
     s_name = request.form['s']
     age = request.form['a']
 
-    # append data to the lists
-    fname.append(f_name)
-    sname.append(s_name)
-    ages.append(age)
 
     # Create a Pandas dataframe from the data.
-    df = pd.DataFrame({'FirstName': fname,'LastName':sname,'AGE':ages})
-    dflist.append(df)
+    df = pd.DataFrame({'FirstName': [f_name],'LastName':[s_name],'AGE':[age]})
 
     # Create a Pandas Excel writer using XlsxWriter as the engine.
     writer = pd.ExcelWriter('pandas.xlsx', engine='xlsxwriter')
 
     # pass concatenated data from dflist into a variable
-    appended_list = pd.concat(dflist)
+    appended_list = pd.concat([out,df])
     
     # pass this appended_list to the excel sheet within the same sheet_name ie 'Sheet1' pass index=0 so 
     #that the data gets inserted from the first column itself
