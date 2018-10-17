@@ -59,27 +59,31 @@ for imagePath in paths.list_images(args["training"]):
 	data.append(hist)
 
 #print(data)
-# train a Linear SVM on the data
-model = LinearSVC(C=100.0, random_state=42)
-model.fit(data, labels)
+if data == []:
+	print('take at least 2 images for training first in trainingimages folder')
 
-# applying svm over the images
-# loop over the testing images
-for imagePath in paths.list_images(args["testing"]):
-	# load the image, convert it to grayscale, describe it,
-	# and classify it
-	image = cv2.imread(imagePath)
-	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	hist = desc.describe(gray)
-	prediction = model.predict(hist.reshape(1, -1))
+else:
+	# train a Linear SVM on the data
+	model = LinearSVC(C=100.0, random_state=42)
+	model.fit(data, labels)
+
+	# applying svm over the images
+	# loop over the testing images
+	for imagePath in paths.list_images(args["testing"]):
+		# load the image, convert it to grayscale, describe it,
+		# and classify it
+		image = cv2.imread(imagePath)
+		gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+		hist = desc.describe(gray)
+		prediction = model.predict(hist.reshape(1, -1))
 
 
-	imagename = ''.join(prediction)
+		imagename = ''.join(prediction)
 
-	imagename = imagename.split('.')
-	# display the image and the prediction
-	cv2.putText(image, imagename[0], (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
-		1.0, (0, 0, 255), 3)
-	cv2.imshow("Image", image)
-	cv2.waitKey(0)
-	break
+		imagename = imagename.split('.')
+		# display the image and the prediction
+		cv2.putText(image, imagename[0], (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
+			1.0, (0, 0, 255), 3)
+		cv2.imshow("Image", image)
+		cv2.waitKey(0)
+		break
