@@ -31,4 +31,13 @@ $ chmod +x __init__.py
 ```sh
 $ systemctl enable --now mariadb.service
 ```
+# lbph
+### create folder trainingimages and place at least 2 images in it for training dataset
+### run the program as
+
+```sh
+$ cd lbph
+$ chmod +x recognize.py
+$ ./recognize --training ./trainingimages --testing ./testingimages
+```
 
